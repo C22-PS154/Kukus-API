@@ -21,7 +21,7 @@ jobs:
           with:
             project_id: 'micro-liberty-351413'
             service_account_email: 'fauzna-syawalino@micro-liberty-351413.iam.gserviceaccount.com'
-            service_account_key: {
+            service_account_key: '{
             "type": "service_account",
             "project_id": "micro-liberty-351413",
             "private_key_id": "6e15dee26c6b45dcbe8e01f308f76229ebe51704",
@@ -32,7 +32,7 @@ jobs:
             "token_uri": "https://oauth2.googleapis.com/token",
             "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
             "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/fauzna-syawalino%40micro-liberty-351413.iam.gserviceaccount.com"
-            }
+            }'
 
         - name: Configure Docker
           run: gcloud auth configure-docker --quiet
