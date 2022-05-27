@@ -44,7 +44,7 @@ jobs:
           run: docker build . -t $IMAGE_NAME
 
         - name: Test Docker image
-          run: docker run $IMAGE_NAME sh -c "node index.js"
+          run: docker run $IMAGE_NAME sh "node index.js"
 
         - name: Push Docker image
           run: docker push $IMAGE_NAME
