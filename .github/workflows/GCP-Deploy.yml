@@ -13,14 +13,14 @@ jobs:
         name: Setup Gcloud Account
         runs-on: ubuntu-latest
         env:
-          IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
+          IMAGE_NAME: gcr.io/micro-liberty-351413/app-kukus
         steps:
 
         - name: Login
           uses: google-github-actions/setup-gcloud@v0
           with:
-            project_id: ${{ secrets.GCP_PROJECT_ID }}
-            service_account_email: ${{ secrets.GCP_EMAIL }}
+            project_id: 'micro-liberty-351413'
+            service_account_email: 'fauzna-syawalino@micro-liberty-351413.iam.gserviceaccount.com'
             service_account_key: ${{ secrets.GCP_CREDENTIALS }}
 
         - name: Configure Docker
@@ -39,4 +39,4 @@ jobs:
           run: docker push $IMAGE_NAME
 
         - name: Deploy Docker image
-          run: gcloud run deploy ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed
+          run: gcloud run deploy micro-liberty-351413 --image $IMAGE_NAME --region us-central1 --platform managed
