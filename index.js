@@ -21,7 +21,7 @@ db.once('open', ()=>{console.log("connection success")})
 
 app.get('/docs', async (req, res)=>{
     const result = await User.find()
-    res.send('/register untuk register akun\n/regbio untuk data biodata\n/login untuk login akun')
+    res.send('<p>/register untuk register akun</p><p>/regbio untuk data biodata</p><p>/login untuk login akun</p>')
 })
 
 //register, akun dan biodata
