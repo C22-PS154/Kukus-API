@@ -19,6 +19,10 @@ const db = mongoose.connection
 db.on('error', console.error.bind(console, "connection error:"))
 db.once('open', ()=>{console.log("connection success")})
 
+app.get('docs', async (req, res)=>{
+    res.send('/register untuk register akun\n/regbio untuk data biodata\n/login untuk login akun')
+})
+
 //register, akun dan biodata
 app.post('/register', async (req,res)=>{
     const email = req.body.email
