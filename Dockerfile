@@ -12,7 +12,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install production dependencies.
-RUN npm install
+RUN npm install mongoose express bcrypt nanoid
 
 # Copy local code to the container image.
 COPY . ./
