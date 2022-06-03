@@ -20,6 +20,7 @@ const BioSchema = new Schema({
   berat_badan: { type: Number, required: true, },
   tingkat_aktivitas: { type: String, enum: ['menetap', 'sedikit_aktif', 'cukup_aktif', 'sangat_aktif', 'ekstra_aktif'], required: true, },
   kecepatan_ideal: { type: String, enum: ['slow', 'normal', 'fast'], required: true, },
+  profilepic : { type: String },
   userid: { type: String, required: true }
 });
 
