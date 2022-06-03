@@ -75,7 +75,7 @@ app.get('/login', async (req,res)=>{
     const ex = await bcrypt.compare(pass, result[0].password)
     console.log(ex)
     if(ex==true){
-        res.send({email:result[0].email})
+        res.send('login success')
         //res.redirect('/home') 
     }else{
         res.send('login fail')
