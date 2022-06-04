@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
-const {User, Bio} = require('./model')
+const {User, Bio, Explore} = require('./model')
 const bcrypt = require('bcrypt')
 const {nanoid} = require('nanoid')
 
@@ -70,7 +70,7 @@ app.post('/regbio', async (req,res)=>{
 app.post('/login', async (req,res)=>{
     const email = req.body.email
     const pass = req.body.pass
-    const result = await User.find({email:`${email}`},{_id:0,password:1,email:1})
+    const result = await User.find({email:`${email}`},{_id:0,__v:0,password:1,email:1})
     console.log(result)
     const ex = await bcrypt.compare(pass, result[0].password)
     console.log(ex)
@@ -84,9 +84,14 @@ app.post('/login', async (req,res)=>{
 
 app.get('/profile/:userid', async (req,res)=>{
     const email = req.body.email
-    const id = await User.find({email:`${email}`},{_id:0,id:1})
-    const pfp = await Bio.find({userid:`${id}`},{_id:0,profilepic:1})
+    const id = await User.find({email:`${email}`},{_id:0,__v:0,id:1})
+    const pfp = await Bio.find({userid:`${id}`},{_id:0,__v:0,profilepic:1})
     res.send(`<img src="data:image/jpg;base64,${pfp}" />`)
+})
+
+app.get('/explore', async (req,res)=>{
+    const result = await Explore.find({},{_id:0,__v:0})
+    res.send(result)
 })
 
 app.get('/test', async (req,res)=>{

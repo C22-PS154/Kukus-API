@@ -24,8 +24,17 @@ const BioSchema = new Schema({
   userid: { type: String, required: true }
 });
 
+const ExploreSchema = new Schema({
+  userAvatar: { type: String, required: true },
+  feeds: { type: String, required: true},
+  username: { type: String, required: true},
+  caption: { type: String, required: true },
+  numlikes: { type: String, required: true}
+})
+
 //Pembuatan Model atas Schema UserSchema
 const User = mongoose.model("User", UserSchema, "Users");
 const Bio = mongoose.model("Bio", BioSchema, "Biodata");
+const Explore = mongoose.model("Explore", ExploreSchema, "Explore")
 
-module.exports = {User, Bio};
+module.exports = {User, Bio, Explore};
