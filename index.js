@@ -89,6 +89,11 @@ app.get('/profile/:userid', async (req,res)=>{
     res.send(`<img src="data:image/jpg;base64,${pfp}" />`)
 })
 
+app.get('/test', async (req,res)=>{
+    const result = await User.find()
+    res.send(result)
+})
+
 
 /*app.get('/hash', async (req,res)=>{
     const pass = req.body.pass
