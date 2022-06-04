@@ -67,7 +67,7 @@ app.post('/regbio', async (req,res)=>{
 })
 
 //login
-app.get('/login', async (req,res)=>{
+app.post('/login', async (req,res)=>{
     const email = req.body.email
     const pass = req.body.pass
     const result = await User.find({email:`${email}`},{_id:0,password:1,email:1})
