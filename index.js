@@ -70,7 +70,7 @@ app.post('/regbio', async (req,res)=>{
 app.post('/login', async (req,res)=>{
     const email = req.body.email
     const pass = req.body.pass
-    const result = await User.find({email:`${email}`},{_id:0,__v:0,password:1,email:1})
+    const result = await User.find({email:`${email}`},{_id:0,password:1,email:1})
     console.log(result)
     const ex = await bcrypt.compare(pass, result[0].password)
     console.log(ex)
