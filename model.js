@@ -12,7 +12,7 @@ const UserSchema = new Schema({
   userid: { type: String, required: true }
 });
 
-const BioSchema = new Schema({
+/*const BioSchema = new Schema({
   tujuan_ideal: { type: String, enum: ['l', 'g'], required: true, },
   jenis_kelamin: { type: String, enum: ['l', 'p'], required: true, },
   ttl: { type: String, required: true, },
@@ -22,7 +22,7 @@ const BioSchema = new Schema({
   kecepatan_ideal: { type: String, enum: ['slow', 'normal', 'fast'], required: true, },
   profilepic : { type: String },
   userid: { type: String, required: true }
-});
+});*/
 
 const ExploreSchema = new Schema({
   userAvatar: { type: String, required: true },
@@ -34,7 +34,7 @@ const ExploreSchema = new Schema({
 
 //Pembuatan Model atas Schema UserSchema
 const User = mongoose.model("User", UserSchema, "Users");
-const Bio = mongoose.model("Bio", BioSchema, "Biodata");
+//const Bio = mongoose.model("Bio", BioSchema, "Biodata");
 const Explore = mongoose.model("Explore", ExploreSchema, "Explore")
 
-module.exports = {User, Bio, Explore};
+module.exports = {User, Explore};

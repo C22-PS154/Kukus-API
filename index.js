@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
-const {User, Bio, Explore} = require('./model')
+const {User, Explore} = require('./model')
 const bcrypt = require('bcrypt')
 const {nanoid} = require('nanoid')
 
@@ -39,7 +39,7 @@ app.post('/register', async (req,res)=>{
 })
 
 //belum dipakai dan disesuaikan
-app.post('/regbio', async (req,res)=>{
+/*app.post('/regbio', async (req,res)=>{
     const goal = req.body.goal
     const gender = req.body.gender
     const ttl = req.body.ttl
@@ -64,7 +64,7 @@ app.post('/regbio', async (req,res)=>{
 
     await example2.save()
     res.send('success')
-})
+})*/
 
 //login
 app.post('/login', async (req,res)=>{
@@ -82,6 +82,7 @@ app.post('/login', async (req,res)=>{
     }
 })
 
+//belum digunakan
 app.get('/profile/:userid', async (req,res)=>{
     const email = req.body.email
     const id = await User.find({email:`${email}`},{_id:0,__v:0,id:1})
