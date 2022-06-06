@@ -1,3 +1,4 @@
+#deploying API from github repository to docker and cloud run
 name: Docker
 
 on:
@@ -13,26 +14,15 @@ jobs:
         name: Setup Gcloud Account
         runs-on: ubuntu-latest
         env:
-          IMAGE_NAME: gcr.io/micro-liberty-351413/app-kukus
+          IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
         steps:
 
         - name: Login
           uses: google-github-actions/setup-gcloud@v0
           with:
-            project_id: 'micro-liberty-351413'
-            service_account_email: 'fauzna-syawalino@micro-liberty-351413.iam.gserviceaccount.com'
-            service_account_key: '{
-            "type": "service_account",
-            "project_id": "micro-liberty-351413",
-            "private_key_id": "6e15dee26c6b45dcbe8e01f308f76229ebe51704",
-            "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQDKZBYPV6GV8+U1\njvf/SVLJ7/WN2lQNjAnAU82BEz2jdWpJbJutFScVOTHWbUms7KaeuDftGCgoQfJp\nVldr0FOdpy7TR0/Y3Qqmgh5h0+8do2c1yWh6OIrRkKQkq++fXF0i6HDfBd1vRofA\nYXRX5IsmzA9RdArASohqSAZKWeUOmRJ9fWmJRn/5FsaxRdD/5nzjQUfSBUC3SXZ+\n2IieLW00l+DC+uX12xes0b7TpV/pKkXrOZhiQc8kK1ewZM4fwZn26H53HYMosfLD\n58xyGdGCKUrSGwbxCck5ca97mkwRVG0eu5VT/jNDQKc2MEEHU8CWs6djnTo5Nms/\nvhsUWhrZAgMBAAECgf9M8xYavzawd2ADp61NYpNs3nnTdS8qohO9tsnA9Dp7QNPT\nFs1vAUaFdeQnorsLBERVabUvGqrUo5OHI/duW8bEKiGjiCQo+oxnbRF1dcl0JgHC\ncXvyUY0gyzLyvmxc1WvpLyG6/yqHJEnOMJS2K4QR5tlBdDKiPwmetG5agSiVuPAE\n3AqdlfqWKw3QzDGn5P8T/KGt807gv3vcxPGKpM8eV2L1rn3ThVpoM/xZWTzwRSeZ\nnxlEG4i+UJ2Rxu5eDCz7FubJJkxHz/VBDZkJfpR0crBuHiVyagLF5qpFOx6JvSth\nTXrW98cYdrROzIVQOjJhsuw4/HnwB1lqxR6pJHECgYEA7tmPWMF+NWpy4PnEkqEL\ndpuTNPjUKTBRYDtBbOKG/DW452a5CyoyFNoak5Dq9k7dpzJs0I8AhQTdYzmzO5X7\nSX2VovIEa7sO6Rx+ozKDNagd1LNtmr2LhitefmsEnAdZs0hEIGUALxN66tU6SZqL\nOQSDLGpnBiQqKcPtxyuSX58CgYEA2Oxanm9WgjaVD9d08cfUDH00GPx7pSEfdtm4\nDqQwCiswDnyELL9agwM5pIxekS0gigWpoKtCsRbvM+QgeZw9302q1pZ/cloPH2Wg\nyJKiIv+rhVgr6BX268Sptd/DIN2j0vMIe5Ki977rFYcW2xMk/vSnyhWBhBA2dcpn\ndri/kocCgYBmxIke4TISfZisIAtqI4yxHcM62Y0/o6B/zT8bQGRgBCVouxQHL8KY\nojcpIwNVsx0/oTych8rrcOpolRz/GEsklbpaf9NTHwsNVctPIJ6/6XPcXs9b8w4j\nTmm77wPutmLr9r4JSivIFZOfktsfbDVW9RATfjyRseHKUpjuR1sVdQKBgQCmuYqw\nyTxBWrhY862zg3YMn1KifbR+56VqUM5xmmo99pG6IKPqTKzBk4IDYcvxYzDmRJHq\nppbcy5bQWF9JePfpIKXUxtlvx55l8FOStXke00k+dNVSTUd6UK5r1m8AXLnkkd0M\nNVlCd5/x7OF5Qg6mUt5/qOXh3iAtioLZMgg0EwKBgDyMqNvK2vk2ic1oW8ENxDrI\nEHc6GYmKbVkPjWJvOq5G+tUczjUp6NqYBhlThDr5kGTxLiNb+qYhSrLlWav4aVV7\nVyHxqn6TQKP6q3o0736xldVQeCa096p5iE3TuKtf7JzC9qJl6fo70BKaHaExfFDG\nRfzz/RNUQ/usKUbQzlfK\n-----END PRIVATE KEY-----\n",
-            "client_email": "fauzna-syawalino@micro-liberty-351413.iam.gserviceaccount.com",
-            "client_id": "112481323937380775879",
-            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-            "token_uri": "https://oauth2.googleapis.com/token",
-            "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-            "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/fauzna-syawalino%40micro-liberty-351413.iam.gserviceaccount.com"
-            }'
+            project_id: ${{ secrets.GCP_PROJECT_ID }}
+            service_account_email: ${{ secrets.GCP_EMAIL }}
+            service_account_key: ${{ secrets.GCP_CREDENTIALS }}
 
         - name: Configure Docker
           run: gcloud auth configure-docker --quiet
@@ -51,4 +41,4 @@ jobs:
           run: docker push $IMAGE_NAME
 
         - name: Deploy Docker image
-          run: gcloud run deploy micro-liberty-351413 --image $IMAGE_NAME --region us-central1 --platform managed --allow-unauthenticated
+          run: gcloud run deploy ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed --allow-unauthenticated
