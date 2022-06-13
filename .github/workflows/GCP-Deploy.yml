@@ -3,13 +3,14 @@ name: Docker
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
 
     deploy:
+
         name: Setup Gcloud Account
         runs-on: ubuntu-latest
         env:
@@ -32,9 +33,8 @@ jobs:
         - name: Build Docker image
           run: docker build . -t $IMAGE_NAME
 
-        # use only for first test to make sure image can run
         - name: Test Docker image
-         run: docker run $IMAGE_NAME sh -c "node index.js"
+          run: docker run $IMAGE_NAME sh -c "node index.js"
 
         - name: Push Docker image
           run: docker push $IMAGE_NAME
