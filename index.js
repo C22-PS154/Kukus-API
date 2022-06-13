@@ -4,7 +4,7 @@ const express = require('express')
 const app = express()
 const {User, Explore} = require('./model')
 const bcrypt = require('bcrypt')
-const {nanoid} = require('nanoid')
+//const { nanoid } = require('nanoid')
 
 app.use(express.json())
 
@@ -24,14 +24,14 @@ app.post('/register', async (req,res)=>{
     const email = req.body.email
     const usern = req.body.usern
     const pass = req.body.pass
-    const id = nanoid(6)
+    //const id = nanoid(6)
 
     const hash = await bcrypt.hash(pass,2)
     const example = new User({
         email:email,
         username:usern,
         password:hash,
-        userid:id
+        //userid:id
     })
 
     await example.save()
