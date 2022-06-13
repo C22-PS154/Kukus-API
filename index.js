@@ -109,6 +109,7 @@ app.get('/test', async (req,res)=>{
     res.send(ex)
 })*/
 
-app.listen(8080, ()=>{
-    console.log('connect at 8080')
-})
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log('API listening on port', port);
+});
