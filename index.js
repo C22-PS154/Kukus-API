@@ -83,7 +83,7 @@ app.post('/login', async (req,res)=>{
 })
 
 //belum digunakan
-app.get('/profile/:userid', async (req,res)=>{
+/*app.get('/profile/:userid', async (req,res)=>{
     const email = req.body.email
     const id = await User.find({email:`${email}`},{_id:0,__v:0,id:1})
     const pfp = await Bio.find({userid:`${id}`},{_id:0,__v:0,profilepic:1})
@@ -98,7 +98,7 @@ app.get('/explore', async (req,res)=>{
 app.get('/test', async (req,res)=>{
     const result = await User.find()
     res.send(result)
-})
+})*/
 
 
 /*app.get('/hash', async (req,res)=>{

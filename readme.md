@@ -55,7 +55,3 @@ Response
         "caption": caption string
     }
 ]"
-
-
-
-Contoh dari POSTMAN
