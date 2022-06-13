@@ -33,9 +33,9 @@ jobs:
         - name: Build Docker image
           run: docker build . -t $IMAGE_NAME
 
-        # use only for first test to make sure image can run
-        #- name: Test Docker image
-        # run: docker run $IMAGE_NAME sh -c "node index.js"
+         use only for first test to make sure image can run
+        - name: Test Docker image
+         run: docker run $IMAGE_NAME sh -c "node index.js"
 
         - name: Push Docker image
           run: docker push $IMAGE_NAME
