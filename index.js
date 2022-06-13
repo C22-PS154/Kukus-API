@@ -14,6 +14,7 @@ mongoose.connect('mongodb+srv://fauzansyawalino:Fauzan16!@clusterkukus.h1tj9.mon
     useUnifiedTopology : true
 })
 
+//test
 //test connection ke db
 const db = mongoose.connection
 db.on('error', console.error.bind(console, "connection error:"))
